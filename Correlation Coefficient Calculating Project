@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication15
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Enter Number of Pairs = ");
+            int n = int.Parse(Console.ReadLine());
+            double[] Y = new double[n];
+            double[] X = new double[n]; 
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write("Insert {0} Pair = (",i+1);
+                string[] s = Console.ReadLine().Split(',');
+                Console.SetCursorPosition(26, 1+i);
+                Console.WriteLine(")");
+                X[i] = double.Parse(s[0]);
+                Y[i] = double.Parse(s[1]);
+            }
+            double XY = 0;
+            for (int i = 0; i < n; i++)
+            {
+                XY += (X[i] * Y[i]); 
+            }
+                Console.WriteLine("XY = {0}",XY);
+            double Ybar = 0;
+            for (int i = 0; i < n; i++)
+            {
+                Ybar += Y[i];
+            }
+                Ybar /= n;
+                    Console.WriteLine("Y bar = {0}",Ybar);
+            double Xbar = 0;
+            for (int i = 0; i < n; i++)
+            {
+                Xbar += X[i];
+            }
+                Xbar /= n;
+                    Console.WriteLine("X bar = {0}",Xbar);
+            double xpower2 = 0;
+            for (int i = 0; i < n; i++)
+            {
+                xpower2 += Math.Pow(X[i],2);
+            }
+                Console.WriteLine("X power 2 = {0}",xpower2);
+            double ypower2 = 0;
+            for (int i = 0; i < n; i++)
+            {
+                ypower2 += Math.Pow(Y[i],2);
+            }
+                Console.WriteLine("Y power 2 = {0}",ypower2);
+            double Correlation = (XY - (n*Ybar*Xbar))/(Math.Sqrt((xpower2 - n*(Math.Pow(Xbar,2)))*(ypower2 - n*(Math.Pow(Ybar,2)))));
+            Console.WriteLine("Correlation is = {0:f2}",Correlation);
+            Console.ReadKey();
+        }
+    }
+}
